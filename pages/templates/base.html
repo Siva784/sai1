@@ -1,0 +1,278 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <!-- Title -->
+  <title>Auqa Traders</title>
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- <style>
+  #animateprawn {
+  width: 90px;
+  height: 40px;
+  
+  position: relative;
+  animation-name: example;
+  animation-duration: 20s;
+}
+
+@keyframes example {
+  0%   {left:0px; top:-20px;}
+  25%  {left:510px; top:-20px;}
+  50%  {left:510px; top:30px;}
+  75%  {left:150px; top:30px;}
+  100% {left:0px; top:0px;}
+}
+</style> -->
+<style>
+  input[type="text"] {
+    border:1px solid black;
+  }
+  input[type="date"] {
+    border:1px solid black;
+  }
+  input[type="text"]:hover {
+    border:2px solid #77b122;
+  }
+  input[type="date"]:hover {
+    border:2px solid #77b122;
+  }
+  .table tr td,th{
+    color: black;
+    font-size: 19px;
+    
+  }
+.table tr th{
+background-color: gray;
+}
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="preloader d-flex align-items-center justify-content-center">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- ##### Header Area Start ##### -->
+  <header class="header-area" >
+    <div class="top-header-area"  style="padding: 20px">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="top-header-content d-flex align-items-center justify-content-between" >
+              <!-- Top Header Content -->
+              <div class="top-header-meta text-center" >
+                <P style="color:#000;font-size:55px;font-family:Hanalei;font-weight: bold;text-shadow:5px 5px 11px black; ">SRI SAI AQUA TRADERS</P>
+              </div>
+              <!-- Top Header Content -->
+              <!-- <div class="top-header-meta text-right">
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: infodeercreative@gmail.com</span></a>
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +84 223 9000</span></a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div class="famie-main-menu">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container">
+          <!-- Menu -->
+          <nav class="classy-navbar justify-content-between" id="famieNav">
+          
+            <!-- Navbar Toggler -->
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
+            </div>
+            <!-- Menu -->
+            <div class="classy-menu">
+              <!-- Close Button -->
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+              <!-- Navbar Start -->
+              <div class="classynav" style="float:right">
+               <ul>
+                  <li><a href="{% url 'data-page' %}">Home</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'logs' %}">Logs Entry</a></li>
+                   <li><a href="#">Pages</a>
+                    <ul class="dropdown">
+                      <li><a href="{% url 'investment' %}">Investment</a></li>
+                    
+                      <li><a href="{% url 'bank-int' %}">Bank Intrests</a></li>
+                      <li><a href="{% url 'stats' %}">Companies</a></li>
+
+                    </ul>
+                  </li>
+                  
+                  <li><a href="{% url 'alldata' %}">All Data</a></li>
+                  <li><a href="{% url 'statistics' %}">Statistics</a></li>
+                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                  <li>
+                  {% if availbalance %}
+                  <li><a style="color:red;font-size: 15px">Available Balance :<span style="letter-spacing: 2px;"> {{ availbalance }}</span></a></li>
+                    {% endif %}
+                  </li>
+                  {% else %}
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                  {% endif %}
+
+                </ul>
+                
+              </div>
+              <!-- Navbar End -->
+
+                 
+                
+              </div>
+                  
+          </nav>
+
+          <!-- Search Form -->
+          
+        </div>
+      </div>
+    </div>
+    
+  </header>
+ <section class="about-us-area">
+    <div class="container">
+
+               <ul>
+                <li>
+                {% if messages %}
+                    {% for message in messages %}
+                       
+                      <div class="alert alert-{{ message.tags }}">
+                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                       {{ message }}
+                    </div>
+                    
+                        {% endfor %}
+                {% endif %}
+              </li>
+             </ul>
+  </div>
+</section>
+
+  <!-- ##### Header Area End ##### -->
+{% block content %}
+{% endblock %}
+  <!-- ##### Footer Area Start ##### -->
+  <footer class="footer-area">
+  
+
+    <!-- Copywrite Area  -->
+    <div class="copywrite-area">
+      <div class="container">
+        <div class="copywrite-text">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+            </div>
+            <div class="col-md-6">
+              <div class="footer-nav">
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ##### Footer Area End ##### -->
+
+  <!-- ##### All Javascript Files ##### -->
+  <!-- jquery 2.2.4  -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <!-- Popper js -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap js -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- Owl Carousel js -->
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <!-- Classynav -->
+  <script src="{% static 'js/classynav.js' %}"></script>
+  <!-- Wow js -->
+  <script src="{% static 'js/wow.min.js' %}"></script>
+  <!-- Sticky js -->
+  <script src="{% static 'js/jquery.sticky.js' %}"></script>
+  <!-- Magnific Popup js -->
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <!-- Scrollup js -->
+  <script src="{% static 'js/jquery.scrollup.min.js' %}"></script>
+  <!-- Jarallax js -->
+  <script src="{% static 'js/jarallax.min.js' %}"></script>
+  <!-- Jarallax Video js -->
+  <script src="{% static 'js/jarallax-video.min.js' %}"></script>
+  <!-- Active js -->
+  <script src="{% static 'js/active.js' %}"></script>
+ <!--  <script>
+    function add_com(){
+      alert("ji");
+var select = document.getElementById("Company_Name");
+var options = ["1", "2", "3", "4", "5"];
+for(var i = 0; i < options.length; i++) {
+    var opt = options[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select.appendChild(el);
+}
+</script> -->
+<script>
+  // Material Design example
+
+  function get_days(){
+         var date11=document.getElementById("date1").value;
+         var date21=document.getElementById("date2").value;
+         var date1 = new Date(date11);
+         var date2 = new Date(date21 );
+         // get total seconds between two dates
+         var res = Math.abs(date1 - date2) / 1000;
+         var days = Math.floor(res / 86400);
+         document.getElementById('bw_days').value=days+1;
+       }
+function get_interest(){
+  var days=document.getElementById('bw_days').value;
+  var payment=document.getElementById('payment').value;
+  var rate=document.getElementById('rate').value;
+  var total_interest=payment*rate*days/100000;
+  var total_amount=(payment*rate*days/100000)+parseInt(payment);
+  document.getElementById('total_interest').value=total_interest;
+  document.getElementById('total_amount').value=total_amount;
+}
+function retonchange(){
+         var idavail=document.getElementById('Investment_amount1').value;
+          var idretamount=document.getElementById('Investment_amount').value;
+          if(idavail<idretamount){
+            document.getElementById('err').innerHTML="check available amount";
+          }
+          else{
+            document.getElementById('but1').style.display="block";
+          }
+       }
+
+ </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'img/fishbanner.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2>Investments</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<section class="contact-area section-padding-100-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <!-- Contact Content -->
+        <div class="col-12 col-lg-5">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h5>Investments</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+            <!-- Contact Form Area -->
+            <div class="contact-form-area">
+              <form action="{% url 'investment' %}" method="post">
+              	{% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-8">
+                    <input type="text" class="form-control" name="From_Investment" placeholder="From Investment">
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="date" class="form-control" name="Investment_Date" placeholder=" Investment Date">
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="text" class="form-control" name="Investment_amount"  placeholder="Investment Amount">
+                  </div>
+                  
+                  <div class="col-12">
+                    <button type="submit" class="btn famie-btn">Add To List</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+ <div class="col-12 col-lg-7">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h5>Investments Data</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+            <!-- Contact Form Area -->
+           <table id="dtMaterialDesignExample" class="table" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">SNo
+      </th>
+      <th class="th-sm">From Investment
+      </th>
+      <th class="th-sm">Date
+      </th>
+      <th class="th-sm">Investment amount
+      </th>
+     
+<th class="th-sm">Action
+      </th>
+            
+    </tr>
+  </thead>
+  <tbody>
+  	{% for i in investdata %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.From_Investment }}</td>
+      <td>{{ i.Investment_Date }}</td>
+      <td>{{ i.Investment_amount }}</td>
+
+      
+      <td><form method="GET" action="{% url 'retpay' i.id %}">
+      {% csrf_token %}
+      <input type="text" style="display:none" value="{{ i.id }}"><button type="submit" class="btn famie-btn">update</button>
+    </form></td>
+      
+    </tr>
+    
+    {% endfor %}
+  </tbody>
+ <tfoot>
+	<th colspan='4'>
+		Total= Investment-Return investment
+	</th>
+	<th>
+		{{ invtotal }}
+	</th>
+</tfoot>
+</table>
+          </div>
+        </div>
+
+        
+        
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

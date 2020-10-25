@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'img/fishbanner.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2>Statistics</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<section class="contact-area section-padding-100-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+       
+    <div class="col-12 col-lg-3">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h5>STATISTICS</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+            <!-- Contact Form Area -->
+           <table id="dtMaterialDesignExample" class="table table-responsive" border='1' width="100%">
+  <thead>
+    <th colspan="2" style="text-align: center">STATISTICS</th>
+  </thead>
+  <tbody>
+  	
+  
+    <tr>
+      <th>Investment </th><td>{{ investment }}</td>
+    </tr>
+    <tr>
+      <th>Returned INV </th><td>{{ retinv }}</td>
+    </tr>
+    <tr>
+      <th>Turn over </th><td>{{ payment }}</td>
+    </tr>
+    <tr>
+      <th>Available Balance </th><td>{{ availbalance }}</td>
+    </tr>
+    <tr>
+      <th> Paying Bank Interest </th><td>{{ bankinterest }}</td>
+    </tr>
+    <tr>
+      <th>Interest</th><td>{{ interest }}</td>
+    </tr>
+    <tr>
+      <th>Profit </th><td>{{ profit }}</td>
+    </tr>
+    
+   
+  </tbody>
+ 
+</table>
+          </div>
+        </div>
+
+        
+        
+      </div>
+    </div>
+  </section>
+{% endblock %}

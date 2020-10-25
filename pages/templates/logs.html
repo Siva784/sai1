@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'img/fishbanner.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2>Logs</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<section class="contact-area section-padding-100-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <!-- Contact Content -->
+        <div class="col-12 col-lg-5">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            
+            <div class="section-heading">
+              <h5>Logs Data Entry</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+           
+            <div class="contact-form-area">
+
+              <form action="{% url 'logs' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label>Company Name</label>
+                    <select name="Company_Name" class="form-control" id="Company_Name" style="border:1px solid black" >
+                      <option>--Select Company--</option>
+                      {% for i in companies %}
+                        <option value="{{ i }}" >{{ i }}</option>
+                      {% endfor %}
+                       
+                    </select>
+                     
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Farmer Name</label>
+                    <input type="text" class="form-control" name="Farmer"  placeholder="Farmer Name">
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label>Payment Date</label>
+                    <input type="date" class="form-control" id="date1" name="Date_of_Pay"  placeholder="Payment Date">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Pay Amount</label>
+                    <input type="text" class="form-control" name="Payment" id="payment" placeholder="Payment">
+                  </div>
+              <!--     <div class="col-lg-6">
+                    <label>Return Payment Date</label>
+                    <input type="date" class="form-control" id="date2" name="Return_Pay_Date"  placeholder="Return Payment Date" onchange="get_days()">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Total Days</label>
+                    <input type="text" class="form-control" name="Total_Days" id="bw_days"  placeholder="Total Days" >
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Rate Of Interest</label>
+                    <select name="Rate_Of_Interest" id="rate" class="form-control" style="border:1px solid black" onchange="get_interest()">
+                      <option>--Select Interest--</option>
+                       <option>70</option>
+                       <option>75</option>
+                       <option>80</option>
+                       <option>85</option>
+                       <option>90</option>
+                       <option>95</option>
+                       <option>100</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Total Interest</label>
+                    <input type="text" class="form-control" name="Interest" id="total_interest"  placeholder="Total Interest" >
+                  </div> -->
+                  <div class="col-12">
+                    <button type="submit" class="btn famie-btn">Add To Logs</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+         <div class="col-12 col-lg-7">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h5>Data</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+            <!-- Contact Form Area -->
+           <table id="dtMaterialDesignExample" class="table table-responsive" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">SNo
+      </th>
+      <th class="th-sm">Company Name
+      </th>
+      <th class="th-sm">Farmer
+      </th>
+      <th class="th-sm">Date of Pay
+      </th>
+       <th class="th-sm">Payment
+      </th>
+      <th class="th-sm">Action
+      </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in alldata %}
+    {% if not i.Interest %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.Company_Name }}</td>
+      <td>{{ i.Farmer }}</td>
+      <td>{{ i.Date_of_Pay }}</td>
+      <td>{{ i.Payment }}</td>
+     <td><form method="GET" action="{% url 'update' i.id %}">
+      {% csrf_token %}
+      <input type="text" style="display:none" value="{{ i.id }}"><button type="submit" class="btn famie-btn">update</button>
+    </form></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+ 
+</table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

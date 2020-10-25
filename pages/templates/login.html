@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'img/fishbanner.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2>Login</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<section class="contact-area section-padding-100-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <!-- Contact Content -->
+        <div class="col-12 col-lg-5">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            
+            <div class="section-heading">
+              <h5>Login Page</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+            <!-- Contact Form Area -->
+            <div class="contact-form-area">
+              <form  method="post">
+                {% csrf_token %}
+                <div class="row">
+                 
+                 <div class="col-lg-8">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="password" class="form-control" name="password"  placeholder="Password">
+                  </div>
+                  </div>
+                  
+                  <div class="col-12 ">
+                    <button type="submit" class="btn btn-success">Login</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

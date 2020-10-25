@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'img/fishbanner.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2>Update</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<section class="contact-area section-padding-100-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <!-- Contact Content -->
+        <div class="col-12 col-lg-5">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            
+            <div class="section-heading">
+              <h5>Logs Data Entry</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+           
+            <div class="contact-form-area">
+
+              <form action="{% url 'update' logs.id %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label>Company Name</label>
+                    <select name="Company_Name" class="form-control" id="Company_Name"  style="border:1px solid black" >
+                      
+                       <option value="{{ logs.Company_Name  }}" >{{ logs.Company_Name  }}</option>
+                      
+                       
+                    </select>
+                     
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Farmer Name</label>
+                    <input type="text" class="form-control" name="Farmer" value="{{ logs.Farmer }}" placeholder="Farmer Name">
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label>Payment Date</label>
+                    <input type="text" class="form-control" id="date1" name="Date_of_Pay" value="{{ logs.Date_of_Pay }}">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Pay Amount</label>
+                    <input type="text" class="form-control" name="Payment" id="payment" placeholder="Payment" value="{{ logs.Payment }}">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Return Payment Date</label>
+                    <input type="date" class="form-control" id="date2" name="Return_Pay_Date"  placeholder="Return Payment Date" onchange="get_days()">
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Total Days</label>
+                    <input type="text" class="form-control" name="Total_Days" id="bw_days"  placeholder="Total Days" >
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Rate Of Interest</label>
+                    <select name="Rate_Of_Interest" id="rate" class="form-control" style="border:1px solid black" onchange="get_interest()">
+                      <option>--Select Interest--</option>
+                       <option>70</option>
+                       <option>75</option>
+                       <option>80</option>
+                       <option>85</option>
+                       <option>90</option>
+                       <option>95</option>
+                       <option>100</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Total Interest</label>
+                    <input type="text" class="form-control" name="Interest" id="total_interest"  placeholder="Total Interest" >
+                  </div>
+                  <div class="col-lg-6">
+                    <label>Interest + Payment</label>
+                    <input type="text" class="form-control" name="Total" id="total_amount"  placeholder="Total Amount" >
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn famie-btn">Add To Logs</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+   
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'img/fishbanner.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2> Return Investments</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="contact-area section-padding-100-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <!-- Contact Content -->
+        <div class="col-12 col-lg-5">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h5>Return Investments</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+            <!-- Contact Form Area -->
+            <div class="contact-form-area">
+              <form action="{% url 'retpay' invlogs.id %}" method="post">
+              	{% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-8">
+                    <input type="hidden" class="form-control" name="id1" placeholder="id" value="{{ invlogs.id }}">
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="text" class="form-control" name="To_Return_Investment" placeholder="To" value="{{ invlogs.From_Investment }}">
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="date" class="form-control" name="Return_Investment_Date" placeholder=" Investment Date">
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="text" class="form-control" id="Investment_amount1" value="{{ idavail }}" >
+                  </div>
+
+                  <div class="col-lg-8">
+                    <input type="text" class="form-control" name="Investment_amount" id="Investment_amount"  placeholder="Investment Amount" onchange="retonchange();">
+                  </div>
+                  <div class="col-lg-8" >
+                    <h5 id="err"></h5>
+                  </div>
+                  
+                  <div class="col-12">
+                    <button type="submit" style="display:none" id="but1" class="btn famie-btn">Pay amount</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+ <div class="col-12 col-lg-7">
+          <div class="contact-content mb-100">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <h5>Return Investments Data</h5>
+              
+              <img src="{% static 'img/core-img/decor.png' %}" alt="">
+            </div>
+            <!-- Contact Form Area -->
+           <table id="dtMaterialDesignExample" class="table" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">SNo
+      </th>
+      <th class="th-sm">To return Investment
+      </th>
+      <th class="th-sm">Return Date
+      </th>
+      <th class="th-sm">Investment amount
+      </th>
+            
+    </tr>
+  </thead>
+  <tbody>
+  	{% for i in retinvestdata %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.To_Return_Investment }}</td>
+      <td>{{ i.Return_Investment_Date }}</td>
+      <td>{{ i.Investment_amount }}</td>
+      
+    </tr>
+    
+    {% endfor %}
+  </tbody>
+ <tfoot>
+	<th>
+		Total 
+	</th>
+	<th>
+		{{ invtotal }}
+	</th>
+</tfoot>
+</table>
+          </div>
+        </div>
+
+        
+        
+      </div>
+    </div>
+  </section>
+{% endblock %}
